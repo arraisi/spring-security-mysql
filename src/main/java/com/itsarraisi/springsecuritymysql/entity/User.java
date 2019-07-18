@@ -27,8 +27,8 @@ public class User {
 
     @NotNull
     @NotEmpty
-    @Column(name = "nick_name")
-    private String nickName;
+    @Column(name = "user_name")
+    private String userName;
 
     @NotNull
     @NotEmpty
@@ -60,7 +60,7 @@ public class User {
     public User(User user) {
         this.id = user.getId();
         this.name = user.getName();
-        this.nickName = user.getNickName();
+        this.userName = user.getUserName();
         this.email = user.getEmail();
         this.phoneNumber = user.getPhoneNumber();
         this.password = user.getPassword();

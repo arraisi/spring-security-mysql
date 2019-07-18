@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -19,14 +18,8 @@ public class UserApi {
     @Autowired
     UserService service;
 
-    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-    @PostMapping("/")
+    @PostMapping("/registration")
     public ResponseEntity<User> registration(@RequestBody User param){
-        String passwordEncoded = passwordEncoder.encode(param.getPassword());
-        param.setPassword(passwordEncoded);
-        param.setMatchingPassword(passwordEncoded);
-        param.setActive(true);
         User user = service.save(param);
       return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
     }
